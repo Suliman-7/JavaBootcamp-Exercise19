@@ -23,11 +23,8 @@ public class TicketController {
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateTicket(@PathVariable int id, @Valid @RequestBody Ticket ticket , Errors errors) {
-        if (errors.hasErrors()) {
-            String message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(message);
-        }
+    public ResponseEntity updateTicket(@PathVariable int id, @Valid @RequestBody Ticket ticket ) {
+
         ticketService.updateTicket(id, ticket);
         return ResponseEntity.status(200).body("ticket updated successfully");
     }
