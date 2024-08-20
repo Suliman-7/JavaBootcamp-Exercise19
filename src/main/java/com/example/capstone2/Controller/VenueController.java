@@ -32,11 +32,8 @@ public class VenueController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateVenue(@PathVariable int id, @Valid @RequestBody Venue venue , Errors errors){
-        if(errors.hasErrors()){
-            String message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(message);
-        }
+    public ResponseEntity updateVenue(@PathVariable int id, @Valid @RequestBody Venue venue ){
+
         venueService.updateVenue(id, venue);
         return ResponseEntity.status(200).body("Venue updated successfully");
     }
