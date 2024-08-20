@@ -6,7 +6,6 @@ import com.example.capstone2.Service.OrganiserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,11 +29,8 @@ public class OrganiserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateOrganiser(@PathVariable int id, @RequestBody Organiser organiser , Errors errors){
-        if (errors.hasErrors()) {
-            String message = errors.getFieldError().getDefaultMessage();
-            return ResponseEntity.status(400).body(message);
-        }
+    public ResponseEntity updateOrganiser(@PathVariable int id, @RequestBody Organiser organiser ){
+
         organiserService.updateOrganiser(id, organiser);
         return ResponseEntity.status(200).body("organiser updated successfully");
     }
